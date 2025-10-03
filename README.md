@@ -2,3 +2,8 @@
 
 ## Excercises include
 - Test-driven development (TDD)
+- Comprehensions
+- Object oriented programming
+
+
+Project by Rowan Price 
