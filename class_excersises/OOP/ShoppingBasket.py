@@ -13,9 +13,11 @@ class ShoppingBasket:
             # Check if the item is already in the shopping basket
             if item in self.items:
                 self.items[item] += quantity
+                self.items[item] -= quantity
             else:
                 self.items[item] = quantity
             if quantity > item.stock:
+                self.items[item] = item.stock
                 print("We do not have enough items to purchase")
         else:
             print("Invalid operation - Quantity must be a positive number!")
@@ -27,6 +29,8 @@ class ShoppingBasket:
             self.items.pop(item, None)
         else:
             if item in self.items:
+                if quantity > item.stock:
+                    self.items[item] = item.stock
                 if quantity < self.items[item]:
                     # Reduce the required quantity for this item
                     self.items[item] -= quantity
@@ -38,6 +42,8 @@ class ShoppingBasket:
     def updateItem(self, item, quantity):
         if quantity > 0:
             self.items[item] = quantity
+            if quantity > item.stock:
+                self.items[item] = item.stock
         else:
             self.removeItem(item)
 
