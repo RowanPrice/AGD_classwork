@@ -32,3 +32,22 @@ def test_add_more_than_stock(setup_items_and_basket):
     # TODO - maybe this should be to add only what exists in stock
     with pytest.raises(ValueError):
         basket.addItem(tomatoSoup, 20)
+
+def test_add_negative_stock(setup_items_and_basket):
+    """ Test adding more negative items"""
+    basket, tomatoSoup, *other = setup_items_and_basket
+    with pytest.raises(ValueError):
+        basket.addItem(tomatoSoup, -11)
+
+def test_add_string(setup_items_and_basket):
+    """ Test using a string rather than an integer as a quantity"""
+    basket, tomatoSoup, *other = setup_items_and_basket
+    with pytest.raises(TypeError):
+        basket.addItem(tomatoSoup, "hello")
+
+def test_add_float(setup_items_and_basket):
+    """ Test using a decimal value as a quantity"""
+    basket, tomatoSoup, *other = setup_items_and_basket
+    with pytest.raises(ValueError):
+        basket.addItem(tomatoSoup, 6.7)
+

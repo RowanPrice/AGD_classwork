@@ -24,6 +24,7 @@ class ShoppingBasket:
             item.stock -= quantity
         else:
             print("Invalid operation - Quantity must be a positive number!")
+            raise ValueError
         if item.stock < quantity:
             print("Error, not enough stock")
             raise ValueError
