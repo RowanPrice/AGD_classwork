@@ -1,4 +1,10 @@
-from Item import Item
+class Item:
+    # Constructor
+    def __init__(self, name, description, price, stock: int = 100):
+        self.name = name
+        self.description = description
+        self.price = price
+        self.stock = stock
 
 
 class ShoppingBasket:
@@ -9,31 +15,29 @@ class ShoppingBasket:
 
     # A method to add an item to the shopping basket
     def addItem(self, item, quantity=1):
-        if quantity > 0:
+        if quantity > 0 and item.stock >= quantity:
             # Check if the item is already in the shopping basket
             if item in self.items:
                 self.items[item] += quantity
-                self.items[item] -= quantity
             else:
                 self.items[item] = quantity
-            if quantity > item.stock:
-                self.items[item] = item.stock
-                print("We do not have enough items to purchase")
+            item.stock -= quantity
+        if item.stock < quantity:
+            print("Error, not enough stock")
         else:
             print("Invalid operation - Quantity must be a positive number!")
 
-    # A method to remove an item from the shopping basket (or reduce it's quantity)
+    # A method to remove an item from the shopping basket (or reduce its quantity)
     def removeItem(self, item, quantity=0):
         if quantity <= 0:
             # Remove the item
             self.items.pop(item, None)
         else:
             if item in self.items:
-                if quantity > item.stock:
-                    self.items[item] = item.stock
                 if quantity < self.items[item]:
                     # Reduce the required quantity for this item
                     self.items[item] -= quantity
+                    item.stock += quantity
                 else:
                     # Remove the item
                     self.items.pop(item, None)
@@ -42,8 +46,7 @@ class ShoppingBasket:
     def updateItem(self, item, quantity):
         if quantity > 0:
             self.items[item] = quantity
-            if quantity > item.stock:
-                self.items[item] = item.stock
+            item.stock -= quantity
         else:
             self.removeItem(item)
 
@@ -71,10 +74,7 @@ class ShoppingBasket:
             totalCost += cost
         return totalCost
 
-    # A method to empty the content of the basket
     def reset(self):
-        self.items = {}
-
-    # A method to return whether the basket is empty or not:
-    def isEmpty(self):
-        return len(self.items) == 0
+        for item in self.items:
+            item.stock += self.items[item]
+            self.item.pop(item, None)
