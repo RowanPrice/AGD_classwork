@@ -26,6 +26,7 @@ class ShoppingBasket:
             print("Invalid operation - Quantity must be a positive number!")
         if item.stock < quantity:
             print("Error, not enough stock")
+            raise ValueError
 
 
     # A method to remove an item from the shopping basket (or reduce its quantity)
