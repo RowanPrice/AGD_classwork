@@ -32,14 +32,3 @@ def test_add_more_than_stock(setup_items_and_basket):
     # TODO - maybe this should be to add only what exists in stock
     with pytest.raises(ValueError):
         basket.addItem(tomatoSoup, 20)
-
-test_data = [("Tomato Soup", "200mL can", 0.70, 20,)
-             ,("xyz",3,"abc")
-             ,("hell0",2,"jgnn0")
-             ,("hello",-2,"fcjjm")
-             ,("abc",-3,"xyz")
-             ,("HeLlO",2,"JgNnQ")
-             ,("hello",100,"dahhk")
-             ,("hello",-100,"lipps")
-             ,(0,2,0)
-             ]

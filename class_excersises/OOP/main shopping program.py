@@ -13,6 +13,6 @@ myBasket = ShoppingBasket()
 myBasket.addItem(tomatoSoup, 4)
 myBasket.addItem(blackOlives, 1)
 myBasket.addItem(mozarella, 2)
-myBasket.addItem(tomatoSoup, 11)
+myBasket.addItem(tomatoSoup, 1)
 
 myBasket.view()
